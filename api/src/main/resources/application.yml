@@ -1,0 +1,17 @@
+aqicn:
+  scheme: 'https'
+  host: 'api.waqi.info'
+  path: 'feed/'
+  token: ${AQICN_TOKEN}
+spring:
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smpt:
+          auth: true
+          starttls:
+            enabled: true
