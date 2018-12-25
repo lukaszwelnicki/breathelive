@@ -23,7 +23,7 @@ class Routes(private val pollutionHandler: PollutionHandler,
                     GET("/geo", pollutionHandler::getPollutionByGeolocation)
                 }
                 "/subscribe".nest {
-                    POST("/subscribe", pollutionSubscribeHandler::handleUserSubscriptionRequest)
+                    POST("/user", pollutionSubscribeHandler::handleUserSubscriptionRequest)
                 }
             }
             accept(TEXT_EVENT_STREAM).nest {

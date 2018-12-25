@@ -4,14 +4,23 @@ aqicn:
   path: 'feed/'
   token: ${AQICN_TOKEN}
 spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: breathelive
   mail:
     host: ${MAIL_HOST}
     port: ${MAIL_PORT}
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
+    protocol: smtp
+    tls: true
     properties:
       mail:
-        smpt:
+        smtp:
           auth: true
           starttls:
-            enabled: true
+            enable: true
+          ssl:
+            trust: smtp.gmail.com

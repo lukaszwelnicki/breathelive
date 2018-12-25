@@ -1,15 +1,16 @@
 package com.software.lukaszwelnicki.breathelive.web
 
-
-import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.PollutionDto
+import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.reactive.server.WebTestClient
 import spock.lang.Specification
 
 @SpringBootTest
+@ActiveProfiles("test")
 @AutoConfigureWebTestClient
 class PollutionHandlerIntegrationTest extends Specification {
 
@@ -23,7 +24,7 @@ class PollutionHandlerIntegrationTest extends Specification {
                     .accept(MediaType.APPLICATION_JSON)
                     .exchange()
                     .expectStatus().isOk()
-                    .returnResult(PollutionDto.class)
+                    .expectBody(AqicnDto.class)
         where:
             city = "warsaw"
     }
@@ -39,7 +40,7 @@ class PollutionHandlerIntegrationTest extends Specification {
                     .accept(MediaType.APPLICATION_JSON)
                     .exchange()
                     .expectStatus().isOk()
-                    .returnResult(PollutionDto.class)
+                    .expectBody(AqicnDto.class)
     }
 
 }

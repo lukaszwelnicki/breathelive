@@ -6,14 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 @Document
 @TypeAlias("user")
-data class User(val email: String) {
+data class User(
     @Id
-    val id: String = ""
-    val firstName: String = ""
-    val lastName: String = ""
-    val city: String? = null
+    val id: String?,
+    val email: String,
+    val firstName: String = "",
+    val lastName: String = "",
+    val city: String? = null,
     val geolocation: Geolocation? = null
-}
+)
 
 data class Geolocation(val latitude: Double, val longitude: Double)
 
