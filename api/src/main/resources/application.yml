@@ -24,3 +24,5 @@ spring:
             enable: true
           ssl:
             trust: smtp.gmail.com
+breathelive:
+  samplingInSeconds: 1200

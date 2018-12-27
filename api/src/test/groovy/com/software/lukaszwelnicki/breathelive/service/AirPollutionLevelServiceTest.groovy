@@ -15,7 +15,7 @@ class AirPollutionLevelServiceTest extends Specification {
 
     def "should get pollution level dto by geolocation"() {
         when:
-            PollutionDto pollutionDto = airPollutionLevelService.getPollutionByGeolocation(new Geolocation(20.0, 20.0)).block()
+            PollutionDto pollutionDto = airPollutionLevelService.getPollutionByGeolocation.invoke(new Geolocation(20.0, 20.0)).block()
         then:
             1 * aqicnRequestsService.getMeasurementsByGeo(_) >> Mono.just(AqicnDto.getDummyInstance())
             pollutionDto.aqis.entrySet().every { entry -> entry.value == AirPollutionLevel.GOOD }
@@ -23,7 +23,7 @@ class AirPollutionLevelServiceTest extends Specification {
 
     def "should get pollution level dto by city"() {
         when:
-            PollutionDto pollutionDto = airPollutionLevelService.getPollutionByCity("city").block()
+            PollutionDto pollutionDto = airPollutionLevelService.getPollutionByCity.invoke("city").block()
         then:
             1 * aqicnRequestsService.getMeasurementsByCity(_) >> Mono.just(AqicnDto.getDummyInstance())
             pollutionDto.aqis.entrySet().every { entry -> entry.value == AirPollutionLevel.GOOD }

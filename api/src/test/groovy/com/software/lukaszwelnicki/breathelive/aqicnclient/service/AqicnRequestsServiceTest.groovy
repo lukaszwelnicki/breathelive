@@ -1,7 +1,7 @@
 package com.software.lukaszwelnicki.breathelive.aqicnclient.service
 
 import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnDto
-import com.software.lukaszwelnicki.breathelive.aqicnclient.namespace.AqicnNamespace
+import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnNamespace
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -22,14 +22,14 @@ class AqicnRequestsServiceTest extends Specification {
 
     def "should retreive data from AqicnService by city and not generate any error"() {
         given:
-            AqicnDto responseData = requestsService.getMeasurementsByCity("Warsaw").block()
+            AqicnDto responseData = requestsService.pollutionByCity.invoke("Warsaw").block()
         expect:
             responseData.status != ''
     }
 
     def "should retreive data by lat = #lat and lon = #lon from AqicnService and not generate any error"() {
         given:
-            AqicnDto responseData = requestsService.getMeasurementsByGeo(new Geolocation(lat, lon)).block()
+            AqicnDto responseData = requestsService.pollutionByGeolocation.invoke(new Geolocation(lat, lon)).block()
         expect:
             responseData.status != ''
         where:
@@ -40,7 +40,7 @@ class AqicnRequestsServiceTest extends Specification {
 
     def "should throw exception when latitude and/or longitude is outside range"() {
         when:
-            requestsService.getMeasurementsByGeo(new Geolocation(lat, lon)).block()
+            requestsService.pollutionByGeolocation.invoke(new Geolocation(lat, lon)).block()
         then:
             IllegalArgumentException ex = thrown()
             ex.getMessage() == "Latitude or longitude outside range"

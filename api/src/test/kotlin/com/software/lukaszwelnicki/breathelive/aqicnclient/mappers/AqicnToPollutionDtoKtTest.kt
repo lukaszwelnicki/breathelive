@@ -25,7 +25,7 @@ internal class AqicnToPollutionDtoKtTest {
     fun shouldProperlyCreatePollutionDto() {
         Assertions.assertEquals(cityName, pollutionDto.city)
         pollutionDto.aqis
-                .forEach { Assertions.assertEquals(pollutionValue, it.key.v) }
+                .forEach { Assertions.assertEquals(pollutionValue, it.key) }
     }
 
 }

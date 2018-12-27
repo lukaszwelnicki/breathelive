@@ -10,10 +10,9 @@ data class User(
     @Id
     val id: String?,
     val email: String,
-    val firstName: String = "",
-    val lastName: String = "",
-    val city: String? = null,
-    val geolocation: Geolocation? = null,
+    val firstName: String? = null,
+    val lastName: String? = null,
+    val geolocation: Geolocation,
     val subscribes: Boolean
 ) {
     override fun equals(other: Any?): Boolean {

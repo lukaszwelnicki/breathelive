@@ -1,8 +1,8 @@
 package com.software.lukaszwelnicki.breathelive.aqicnclient.service
 
 import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnDto
+import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnNamespace
 import com.software.lukaszwelnicki.breathelive.aqicnclient.exceptions.AqicnServerException
-import com.software.lukaszwelnicki.breathelive.aqicnclient.namespace.AqicnNamespace
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
 import com.software.lukaszwelnicki.breathelive.utils.validateGeolocation
 import mu.KotlinLogging
@@ -28,11 +28,9 @@ class AqicnRequestsService(private val aqicnNamespace: AqicnNamespace) {
             .filter(logRequest())
             .build()
 
-    fun getMeasurementsByCity(city: String): Mono<AqicnDto> =
-            getAqicnRequest(prepareUriForCityRequest(city))
+    val pollutionByCity = { city: String -> getAqicnRequest(prepareUriForCityRequest(city))}
 
-    fun getMeasurementsByGeo(geo: Geolocation): Mono<AqicnDto> =
-            getAqicnRequest(prepareUriForGeoRequest(geo))
+    val pollutionByGeolocation = { geo: Geolocation -> getAqicnRequest(prepareUriForGeoRequest(geo))}
 
     private fun getAqicnRequest(uri: URI): Mono<AqicnDto> =
             webClient.get()

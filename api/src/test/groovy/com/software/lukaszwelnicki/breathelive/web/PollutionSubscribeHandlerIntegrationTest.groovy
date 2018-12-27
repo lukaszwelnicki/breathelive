@@ -21,7 +21,7 @@ class PollutionSubscribeHandlerIntegrationTest extends TestcontainersConfig {
 
     def "subscribing user should be stored to database"() {
         given:
-            User user = new User(null, email, firstName, lastName, city, null)
+            User user = new User(null, email, firstName, lastName, null, true)
         expect:
             webTestClient.post()
                     .uri("/api/subscribe/user")
@@ -36,7 +36,6 @@ class PollutionSubscribeHandlerIntegrationTest extends TestcontainersConfig {
             email = 'example.email@example.com'
             firstName = 'John'
             lastName = 'Smith'
-            city = 'Warsaw'
 
 
     }
