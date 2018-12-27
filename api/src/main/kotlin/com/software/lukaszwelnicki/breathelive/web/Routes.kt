@@ -1,6 +1,5 @@
 package com.software.lukaszwelnicki.breathelive.web
 
-import com.software.lukaszwelnicki.breathelive.web.handlers.NotifyProcessHandler
 import com.software.lukaszwelnicki.breathelive.web.handlers.PollutionInformationHandler
 import com.software.lukaszwelnicki.breathelive.web.handlers.UserSubscribeHandler
 import org.springframework.context.annotation.Bean
@@ -10,8 +9,7 @@ import org.springframework.web.reactive.function.server.router
 
 @Configuration
 class Routes(private val pollutionInformationHandler: PollutionInformationHandler,
-             private val userSubscribeHandler: UserSubscribeHandler,
-             private val notifyProcessHandler: NotifyProcessHandler) {
+             private val userSubscribeHandler: UserSubscribeHandler) {
     @Bean
     fun router() = router {
         "/api".nest {
@@ -22,13 +20,6 @@ class Routes(private val pollutionInformationHandler: PollutionInformationHandle
                 }
                 "/subscribe".nest {
                     POST("/user", userSubscribeHandler::handleUserSubscriptionRequest)
-                }
-            }
-        }
-        "/admin".nest {
-            accept(APPLICATION_JSON).nest {
-                "/notify".nest {
-                    GET("/start", notifyProcessHandler::startNotifyingProcess)
                 }
             }
         }
