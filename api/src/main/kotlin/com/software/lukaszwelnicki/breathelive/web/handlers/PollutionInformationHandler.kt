@@ -12,7 +12,7 @@ import org.springframework.web.reactive.function.server.body
 import reactor.core.publisher.Mono
 
 @Component
-class PollutionHandler(private val airPollutionLevelService: AirPollutionLevelService) {
+class PollutionInformationHandler(private val airPollutionLevelService: AirPollutionLevelService) {
 
     fun getPollutionByCity(req: ServerRequest): Mono<ServerResponse> =
             ok().contentType(APPLICATION_JSON)

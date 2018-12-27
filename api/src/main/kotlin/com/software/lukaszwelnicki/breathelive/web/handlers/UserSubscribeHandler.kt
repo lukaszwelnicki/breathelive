@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.server.body
 import reactor.core.publisher.Mono
 
 @Component
-class PollutionSubscribeHandler(private val userService: UserService) {
+class UserSubscribeHandler(private val userService: UserService) {
 
     fun handleUserSubscriptionRequest(req: ServerRequest): Mono<ServerResponse> {
         return req.bodyToMono(User::class.java)
