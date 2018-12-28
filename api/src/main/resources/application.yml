@@ -4,11 +4,6 @@ aqicn:
   path: 'feed/'
   token: ${AQICN_TOKEN}
 spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: breathelive
   mail:
     host: ${MAIL_HOST}
     port: ${MAIL_PORT}
