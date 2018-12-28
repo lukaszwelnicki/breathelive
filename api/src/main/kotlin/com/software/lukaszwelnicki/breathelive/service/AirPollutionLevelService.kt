@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service
 @Service
 class AirPollutionLevelService(private val aqicnRequestsService: AqicnRequestsService) {
 
-    val getPollutionByGeolocation = { geo: Geolocation -> aqicnRequestsService.pollutionByGeolocation(geo).map { it.toPollutionDto() } }
-    val getPollutionByCity = { city: String -> aqicnRequestsService.pollutionByCity(city).map { it.toPollutionDto() } }
+    fun getPollutionByGeolocation(geo: Geolocation) = aqicnRequestsService.getPollutionByGeolocation(geo).map { it.toPollutionDto() }
+    fun getPollutionByCity(city: String) = aqicnRequestsService.getPollutionByCity(city).map { it.toPollutionDto() }
 
 }
 

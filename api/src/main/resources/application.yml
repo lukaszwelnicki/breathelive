@@ -25,4 +25,4 @@ spring:
           ssl:
             trust: smtp.gmail.com
 breathelive:
-  samplingInSeconds: 1200
+  samplingInSeconds: 21600

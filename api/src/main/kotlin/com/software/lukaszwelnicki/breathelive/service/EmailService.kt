@@ -2,8 +2,9 @@ package com.software.lukaszwelnicki.breathelive.service
 
 import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.PollutionDto
 import com.software.lukaszwelnicki.breathelive.domain.User
+import com.software.lukaszwelnicki.breathelive.dto.EmailDto
 import org.springframework.boot.autoconfigure.mail.MailProperties
-import org.springframework.core.io.ClassPathResource
+import org.springframework.core.io.ResourceLoader
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.stereotype.Service
@@ -11,24 +12,22 @@ import java.nio.charset.StandardCharsets
 
 
 interface EmailService {
-    fun sendPollutionEmail(pollutionData: Pair<User, PollutionDto>)
+    fun sendPollutionEmail(emailData: EmailDto)
 }
 
 @Service
-class EmailServiceImpl(private val javaMailSender: JavaMailSender, private val mailProperties: MailProperties) : EmailService {
+class EmailServiceImpl(private val javaMailSender: JavaMailSender,
+                       private val mailProperties: MailProperties,
+                       private val resourceLoader: ResourceLoader) : EmailService {
 
-    override fun sendPollutionEmail(pollutionData: Pair<User, PollutionDto>) {
-        sendEmail(pollutionData)
-    }
-
-    private fun sendEmail(pollutionData: Pair<User, PollutionDto>) {
+    override fun sendPollutionEmail(emailData: EmailDto)  {
         val message = javaMailSender.createMimeMessage()
         val helper = MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name())
-        helper.addAttachment("aqicn.png", ClassPathResource("aqicn.png"))
+        helper.addAttachment("aqicn.png", resourceLoader.getResource("classpath:images/aqicn.png"))
         val inlineImage = "<img src=\"cid:aqicn.png\"></img><br/>"
-        helper.setText(prepareTextMessage(pollutionData.first, pollutionData.second) + inlineImage, true)
-        helper.setSubject("Air pollution in ${pollutionData.second.city}")
-        helper.setTo(pollutionData.first.email)
+        helper.setText(prepareTextMessage(emailData.user, emailData.pollutionDto) + inlineImage, true)
+        helper.setSubject("Air pollution in ${emailData.pollutionDto.city}")
+        helper.setTo(emailData.user.email)
         helper.setFrom(mailProperties.username)
         javaMailSender.send(message)
     }
@@ -44,7 +43,7 @@ class EmailServiceImpl(private val javaMailSender: JavaMailSender, private val m
             |
             |To get more information about air quality indices see the table below:
             |
-            """.trimMargin()
+            """.trimMargin().replace("\n", "<br>")
     }
 
 }

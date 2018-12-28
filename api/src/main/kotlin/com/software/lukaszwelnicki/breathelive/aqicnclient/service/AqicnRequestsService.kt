@@ -28,9 +28,9 @@ class AqicnRequestsService(private val aqicnNamespace: AqicnNamespace) {
             .filter(logRequest())
             .build()
 
-    val pollutionByCity = { city: String -> getAqicnRequest(prepareUriForCityRequest(city)) }
+    fun getPollutionByCity(city: String) = getAqicnRequest(prepareUriForCityRequest(city))
 
-    val pollutionByGeolocation = { geo: Geolocation -> getAqicnRequest(prepareUriForGeoRequest(geo)) }
+    fun getPollutionByGeolocation(geo: Geolocation) = getAqicnRequest(prepareUriForGeoRequest(geo))
 
     private fun getAqicnRequest(uri: URI): Mono<AqicnDto> =
             webClient.get()

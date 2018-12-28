@@ -1,6 +1,7 @@
 package com.software.lukaszwelnicki.breathelive.web
 
 import com.software.lukaszwelnicki.breathelive.TestcontainersConfig
+import com.software.lukaszwelnicki.breathelive.domain.Geolocation
 import com.software.lukaszwelnicki.breathelive.domain.User
 import com.software.lukaszwelnicki.breathelive.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,7 +22,7 @@ class PollutionSubscribeHandlerIntegrationTest extends TestcontainersConfig {
 
     def "subscribing user should be stored to database"() {
         given:
-            User user = new User(null, email, firstName, lastName, null, true)
+            User user = new User(null, email, firstName, lastName, new Geolocation(0.0, 0.0), true)
         expect:
             webTestClient.post()
                     .uri("/api/subscribe/user")
