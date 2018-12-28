@@ -10,7 +10,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
 import reactor.core.publisher.Mono
 
-@AutoConfigureWebTestClient
+@AutoConfigureWebTestClient(timeout = "36000")
 class PollutionSubscribeHandlerIntegrationTest extends TestcontainersConfig {
 
     @Autowired

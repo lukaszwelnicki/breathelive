@@ -28,5 +28,4 @@ internal class AqicnToPollutionDtoKtTest {
         pollutionDto.aqis
                 .forEach { Assertions.assertEquals(AirPollutionLevel.GOOD, it.value) }
     }
-
 }

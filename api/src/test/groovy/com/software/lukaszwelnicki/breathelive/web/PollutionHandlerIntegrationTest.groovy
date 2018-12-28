@@ -11,7 +11,7 @@ import spock.lang.Specification
 
 @SpringBootTest
 @ActiveProfiles("test")
-@AutoConfigureWebTestClient
+@AutoConfigureWebTestClient(timeout = "36000")
 class PollutionHandlerIntegrationTest extends Specification {
 
     @Autowired
