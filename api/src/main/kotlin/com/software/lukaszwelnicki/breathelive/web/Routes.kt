@@ -5,6 +5,7 @@ import com.software.lukaszwelnicki.breathelive.web.handlers.UserSubscribeHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType.APPLICATION_JSON
+import org.springframework.web.reactive.function.BodyInserters.fromObject
 import org.springframework.web.reactive.function.server.router
 
 @Configuration
@@ -14,6 +15,7 @@ class Routes(private val pollutionInformationHandler: PollutionInformationHandle
     fun router() = router {
         "/api".nest {
             accept(APPLICATION_JSON).nest {
+                GET("/keepalive", { _ -> ok().contentType(APPLICATION_JSON).body(fromObject("App is alive")) })
                 "/pollution".nest {
                     GET("/city/{city}", pollutionInformationHandler::getPollutionByCity)
                     GET("/geo", pollutionInformationHandler::getPollutionByGeolocation)
