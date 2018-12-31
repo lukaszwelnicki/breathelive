@@ -34,10 +34,11 @@ data class User(
 data class Geolocation(val latitude: Double, val longitude: Double)
 
 enum class AirPollutionLevel(val lowerAqi: Double, val upperAqi: Double) {
+    NO_DATA(Double.NEGATIVE_INFINITY, 0.0),
     GOOD(0.0, 50.0),
-    MODERATE(51.0, 100.0),
-    UNHEALTHY_FOR_SENSITIVE_GROUPS(101.0, 150.0),
-    UNHEALTHY(151.0, 200.0),
-    VERY_UNHEALTHY(201.0, 250.0),
-    HAZARDOUS(251.0, Double.MAX_VALUE)
+    MODERATE(50.0, 100.0),
+    UNHEALTHY_FOR_SENSITIVE_GROUPS(100.0, 150.0),
+    UNHEALTHY(150.0, 200.0),
+    VERY_UNHEALTHY(200.0, 250.0),
+    HAZARDOUS(250.0, Double.POSITIVE_INFINITY)
 }
