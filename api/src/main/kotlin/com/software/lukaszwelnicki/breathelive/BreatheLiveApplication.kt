@@ -1,9 +1,7 @@
 package com.software.lukaszwelnicki.breathelive
 
-import com.software.lukaszwelnicki.breathelive.domain.Geolocation
-import com.software.lukaszwelnicki.breathelive.domain.User
 import com.software.lukaszwelnicki.breathelive.service.SubscriptionProcessingService
-import com.software.lukaszwelnicki.breathelive.service.UserService
+import com.software.lukaszwelnicki.breathelive.service.UserRepository
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.runApplication
@@ -19,11 +17,9 @@ fun main(args: Array<String>) {
 
 @Component
 class ApplicatonStartup(private val subscriptionProcessingService: SubscriptionProcessingService,
-                        private val userService: UserService) : ApplicationListener<ApplicationReadyEvent> {
+                        private val userRepository: UserRepository) : ApplicationListener<ApplicationReadyEvent> {
 
     override fun onApplicationEvent(event: ApplicationReadyEvent) {
-        userService.storeOrUpdateUser(User(id = "1", email = "lukasz.welnicki@gmail.com", geolocation = Geolocation(52.23, 20.99),subscribes = true))
-                .thenMany(subscriptionProcessingService.notifySubscribers())
-                .subscribe()
+        userRepository.deleteAll().thenMany(subscriptionProcessingService.notifySubscribers()).subscribe()
     }
 }

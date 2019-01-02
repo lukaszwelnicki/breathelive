@@ -8,6 +8,7 @@ import reactor.core.publisher.Mono
 
 interface UserRepository : ReactiveMongoRepository<User, String> {
     fun findByEmail(email: String): Mono<User>
+    fun deleteByEmail(email: String): Mono<Long>
     fun findAllBySubscribesTrue(): Flux<User>
 }
 
@@ -19,7 +20,7 @@ interface UserService {
 
 @Service
 class UserServiceImpl(private val userRepository: UserRepository) : UserService {
-    override fun storeOrUpdateUser(user: User) = userRepository.save(user)
+    override fun storeOrUpdateUser(user: User) = userRepository.deleteByEmail(user.email).then(userRepository.insert(user))
     override fun findUserByEmail(email: String) = userRepository.findByEmail(email)
     override fun findAllSubscribingUsers() = userRepository.findAllBySubscribesTrue()
 }
