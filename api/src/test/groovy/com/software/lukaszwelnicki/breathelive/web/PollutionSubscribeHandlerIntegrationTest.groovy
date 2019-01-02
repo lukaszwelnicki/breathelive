@@ -10,6 +10,8 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
 import reactor.core.publisher.Mono
 
+import java.time.LocalTime
+
 @AutoConfigureWebTestClient(timeout = "36000")
 class PollutionSubscribeHandlerIntegrationTest extends TestcontainersConfig {
 
@@ -22,7 +24,8 @@ class PollutionSubscribeHandlerIntegrationTest extends TestcontainersConfig {
 
     def "subscribing user should be stored to database"() {
         given:
-            User user = new User(null, email, firstName, lastName, new Geolocation(0.0, 0.0), true)
+            Set<LocalTime> notifTimes = new HashSet<>(Arrays.asList(LocalTime.parse("10:15")))
+            User user = new User(null, email, firstName, lastName, new Geolocation(0.0, 0.0), true, notifTimes)
         expect:
             webTestClient.post()
                     .uri("/api/subscribe/user")
@@ -32,7 +35,8 @@ class PollutionSubscribeHandlerIntegrationTest extends TestcontainersConfig {
                     .exchange()
                     .expectStatus().isOk()
                     .expectBody(User.class)
-            userService.findUserByEmail(email).block().email == email
+            userService.findUserByEmail(email).block().id != null
+            !userService.findUserByEmail(email).block().notificationTimes.isEmpty()
         where:
             email = 'example.email@example.com'
             firstName = 'John'

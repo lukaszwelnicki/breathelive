@@ -3,6 +3,7 @@ package com.software.lukaszwelnicki.breathelive.domain
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.TypeAlias
 import org.springframework.data.mongodb.core.mapping.Document
+import java.time.LocalTime
 
 @Document
 @TypeAlias("user")
@@ -13,7 +14,8 @@ data class User(
     val firstName: String? = null,
     val lastName: String? = null,
     val geolocation: Geolocation,
-    val subscribes: Boolean
+    val subscribes: Boolean,
+    val notificationTimes: Set<LocalTime>
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

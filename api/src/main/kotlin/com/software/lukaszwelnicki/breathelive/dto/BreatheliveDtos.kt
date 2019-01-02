@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration
 class BreatheliveProperties {
     lateinit var samplingInSeconds: String
     fun samplingInSecondsAsLong(): Long = samplingInSeconds.toLong()
+    fun samplingInMinutesAsLong(): Long = samplingInSeconds.toLong() / 60
 }
 
 data class EmailDto(val user: User, val pollutionDto: PollutionDto)

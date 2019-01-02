@@ -4,6 +4,9 @@ aqicn:
   path: 'feed/'
   token: ${AQICN_TOKEN}
 spring:
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS : false
   mail:
     host: ${MAIL_HOST}
     port: ${MAIL_PORT}
@@ -20,4 +23,4 @@ spring:
           ssl:
             trust: smtp.gmail.com
 breathelive:
-  samplingInSeconds: 21600
+  samplingInSeconds: 60
