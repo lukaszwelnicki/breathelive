@@ -2,7 +2,6 @@ package com.software.lukaszwelnicki.breathelive.aqicnclient.service
 
 import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnDto
 import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnNamespace
-import com.software.lukaszwelnicki.breathelive.aqicnclient.exceptions.AqicnServerException
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
 import com.software.lukaszwelnicki.breathelive.utils.validateGeolocation
 import mu.KotlinLogging
@@ -28,16 +27,17 @@ class AqicnRequestsService(private val aqicnNamespace: AqicnNamespace) {
             .filter(logRequest())
             .build()
 
-    fun getPollutionByCity(city: String) = getAqicnRequest(prepareUriForCityRequest(city))
+    fun getPollutionByCity(city: String) = Mono.just(prepareUriForCityRequest(city))
+            .flatMap { it -> getAqicnRequest(it).onErrorResume { Mono.empty() } }
 
-    fun getPollutionByGeolocation(geo: Geolocation) = getAqicnRequest(prepareUriForGeoRequest(geo))
+    fun getPollutionByGeolocation(geo: Geolocation) = Mono.just(prepareUriForGeoRequest(geo))
+            .flatMap { it -> getAqicnRequest(it).onErrorResume { Mono.empty() } }
 
     private fun getAqicnRequest(uri: URI): Mono<AqicnDto> =
             webClient.get()
                     .uri(uri)
                     .retrieve()
-                    .bodyToMono<AqicnDto>()
-                    .onErrorMap { e -> AqicnServerException("Could not process Aqicn URL", e) }
+                    .bodyToMono()
 
     private fun prepareUriForCityRequest(city: String) =
             getBaseUriBuilder()
