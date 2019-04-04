@@ -1,10 +1,12 @@
 package com.software.lukaszwelnicki.breathelive.service
 
-import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.PollutionDto
+import com.software.lukaszwelnicki.breathelive.aqicnclient.PollutionDto
 import com.software.lukaszwelnicki.breathelive.domain.AirPollutionLevel
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
 import com.software.lukaszwelnicki.breathelive.domain.User
 import com.software.lukaszwelnicki.breathelive.dto.BreatheliveProperties
+import com.software.lukaszwelnicki.breathelive.email.EmailService
+import com.software.lukaszwelnicki.breathelive.users.UserService
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier

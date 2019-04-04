@@ -1,8 +1,8 @@
 package com.software.lukaszwelnicki.breathelive.service
 
+import com.software.lukaszwelnicki.breathelive.aqicnclient.AqicnPollutionService
+import com.software.lukaszwelnicki.breathelive.aqicnclient.PollutionDto
 import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnDto
-import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.PollutionDto
-import com.software.lukaszwelnicki.breathelive.aqicnclient.service.AqicnRequestsService
 import com.software.lukaszwelnicki.breathelive.domain.AirPollutionLevel
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
 import reactor.core.publisher.Mono
@@ -10,7 +10,7 @@ import spock.lang.Specification
 
 class AirPollutionLevelServiceTest extends Specification {
 
-    def aqicnRequestsService = Mock(AqicnRequestsService)
+    def aqicnRequestsService = Mock(AqicnPollutionService)
     def airPollutionLevelService = new AirPollutionLevelService(aqicnRequestsService)
 
     def "should get pollution level dto by geolocation"() {

@@ -1,23 +1,24 @@
 package com.software.lukaszwelnicki.breathelive.aqicnclient.service
 
+import com.software.lukaszwelnicki.breathelive.aqicnclient.AqicnPollutionService
+import com.software.lukaszwelnicki.breathelive.aqicnclient.configuration.AqicnNamespace
 import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnDto
-import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnNamespace
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
 import spock.lang.Specification
 import spock.lang.Unroll
 
 @Unroll
-class AqicnRequestsServiceTest extends Specification {
+class AqicnPollutionServiceTest extends Specification {
 
     AqicnNamespace namespace = new AqicnNamespace()
-    AqicnRequestsService requestsService
+    AqicnPollutionService requestsService
 
     def "setup"() {
         namespace.host = 'api.waqi.info'
         namespace.scheme = 'https'
         namespace.path = 'feed/'
         namespace.token = '6752cfb807b996e913f60c4a6cca1209766e45ab'
-        requestsService = new AqicnRequestsService(namespace)
+        requestsService = new AqicnPollutionService(namespace)
     }
 
     def "should retreive data from AqicnService by city and not generate any error"() {

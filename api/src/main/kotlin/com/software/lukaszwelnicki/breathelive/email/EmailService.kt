@@ -1,8 +1,7 @@
-package com.software.lukaszwelnicki.breathelive.service
+package com.software.lukaszwelnicki.breathelive.email
 
-import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.PollutionDto
 import com.software.lukaszwelnicki.breathelive.domain.User
-import com.software.lukaszwelnicki.breathelive.dto.EmailDto
+import com.software.lukaszwelnicki.breathelive.web.PollutionDto
 import mu.KotlinLogging
 import org.springframework.boot.autoconfigure.mail.MailProperties
 import org.springframework.core.io.ResourceLoader
@@ -11,6 +10,7 @@ import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.stereotype.Service
 import java.nio.charset.StandardCharsets
 
+data class EmailDto(val user: User, val pollutionDto: PollutionDto)
 
 interface EmailService {
     fun sendPollutionEmail(emailData: EmailDto)
@@ -41,9 +41,9 @@ class EmailServiceImpl(private val javaMailSender: JavaMailSender,
             |Greetings${user.firstName?.let { ", $it!" } ?: "!"}
             |
             |Here is the air pollution level report for ${pollutionData.city}
-            |PM25: ${pollutionData.aqis.get("pm25")}
-            |PM10: ${pollutionData.aqis.get("pm10")}
-            |SO2: ${pollutionData.aqis.get("so2")}
+            |PM25: ${pollutionData.airQualityIndicies.get("pm25")}
+            |PM10: ${pollutionData.airQualityIndicies.get("pm10")}
+            |SO2: ${pollutionData.airQualityIndicies.get("so2")}
             |
             |To get more information about air quality indices see the table below:
             |

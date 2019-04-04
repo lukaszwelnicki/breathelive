@@ -36,6 +36,7 @@ data class User(
 data class Geolocation(val latitude: Double, val longitude: Double)
 
 enum class AirPollutionLevel(val lowerAqi: Double, val upperAqi: Double) {
+
     NO_DATA(Double.NEGATIVE_INFINITY, 0.0),
     GOOD(0.0, 50.0),
     MODERATE(50.0, 100.0),

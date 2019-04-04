@@ -1,7 +1,7 @@
 package com.software.lukaszwelnicki.breathelive.web.handlers
 
 import com.software.lukaszwelnicki.breathelive.domain.User
-import com.software.lukaszwelnicki.breathelive.service.UserService
+import com.software.lukaszwelnicki.breathelive.users.UserService
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest

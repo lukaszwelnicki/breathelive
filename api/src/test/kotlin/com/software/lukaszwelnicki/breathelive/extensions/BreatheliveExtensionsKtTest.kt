@@ -1,4 +1,4 @@
-package com.software.lukaszwelnicki.breathelive.utils
+package com.software.lukaszwelnicki.breathelive.extensions
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest

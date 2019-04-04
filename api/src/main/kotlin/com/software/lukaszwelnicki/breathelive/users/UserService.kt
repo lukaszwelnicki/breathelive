@@ -1,4 +1,4 @@
-package com.software.lukaszwelnicki.breathelive.service
+package com.software.lukaszwelnicki.breathelive.users
 
 import com.software.lukaszwelnicki.breathelive.domain.User
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository

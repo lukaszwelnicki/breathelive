@@ -1,9 +1,11 @@
-package com.software.lukaszwelnicki.breathelive.aqicnclient.service
+package com.software.lukaszwelnicki.breathelive.aqicnclient
 
+import com.software.lukaszwelnicki.breathelive.aqicnclient.configuration.AqicnNamespace
 import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnDto
-import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnNamespace
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
-import com.software.lukaszwelnicki.breathelive.utils.validateGeolocation
+import com.software.lukaszwelnicki.breathelive.extensions.toPollutionDto
+import com.software.lukaszwelnicki.breathelive.extensions.validateGeolocation
+import com.software.lukaszwelnicki.breathelive.web.PollutionService
 import mu.KotlinLogging
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
@@ -18,7 +20,7 @@ import reactor.core.publisher.Mono
 import java.net.URI
 
 @Service
-class AqicnRequestsService(private val aqicnNamespace: AqicnNamespace) {
+class AqicnPollutionService(private val aqicnNamespace: AqicnNamespace) : PollutionService {
 
     private val logger = KotlinLogging.logger {}
 
@@ -27,11 +29,13 @@ class AqicnRequestsService(private val aqicnNamespace: AqicnNamespace) {
             .filter(logRequest())
             .build()
 
-    fun getPollutionByCity(city: String) = Mono.just(prepareUriForCityRequest(city))
+    override fun getPollutionByCity(city: String) = Mono.just(prepareUriForCityRequest(city))
             .flatMap { it -> getAqicnRequest(it).onErrorResume { Mono.empty() } }
+            .map { it.toPollutionDto() }
 
-    fun getPollutionByGeolocation(geo: Geolocation) = Mono.just(prepareUriForGeoRequest(geo))
+    override fun getPollutionByGeolocation(geo: Geolocation) = Mono.just(prepareUriForGeoRequest(geo))
             .flatMap { it -> getAqicnRequest(it).onErrorResume { Mono.empty() } }
+            .map { it.toPollutionDto() }
 
     private fun getAqicnRequest(uri: URI): Mono<AqicnDto> =
             webClient.get()

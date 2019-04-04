@@ -1,6 +1,6 @@
 package com.software.lukaszwelnicki.breathelive.web
 
-import com.software.lukaszwelnicki.breathelive.service.UserService
+import com.software.lukaszwelnicki.breathelive.users.UserService
 import com.software.lukaszwelnicki.breathelive.web.handlers.PollutionInformationHandler
 import com.software.lukaszwelnicki.breathelive.web.handlers.UserSubscribeHandler
 import org.springframework.context.annotation.Bean

@@ -1,7 +1,7 @@
 package com.software.lukaszwelnicki.breathelive.web.handlers
 
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
-import com.software.lukaszwelnicki.breathelive.service.AirPollutionLevelService
+import com.software.lukaszwelnicki.breathelive.web.PollutionService
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
@@ -12,7 +12,7 @@ import org.springframework.web.reactive.function.server.body
 import reactor.core.publisher.Mono
 
 @Component
-class PollutionInformationHandler(private val airPollutionLevelService: AirPollutionLevelService) {
+class PollutionInformationHandler(private val airPollutionLevelService: PollutionService) {
 
     fun getPollutionByCity(req: ServerRequest): Mono<ServerResponse> =
             ok().contentType(APPLICATION_JSON)

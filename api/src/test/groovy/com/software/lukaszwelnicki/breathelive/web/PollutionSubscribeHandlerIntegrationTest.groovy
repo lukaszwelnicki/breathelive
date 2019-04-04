@@ -3,7 +3,7 @@ package com.software.lukaszwelnicki.breathelive.web
 import com.software.lukaszwelnicki.breathelive.TestcontainersConfig
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
 import com.software.lukaszwelnicki.breathelive.domain.User
-import com.software.lukaszwelnicki.breathelive.service.UserService
+import com.software.lukaszwelnicki.breathelive.users.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.http.MediaType
