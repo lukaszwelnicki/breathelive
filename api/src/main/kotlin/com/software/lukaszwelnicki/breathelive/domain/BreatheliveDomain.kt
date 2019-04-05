@@ -8,15 +8,15 @@ import java.time.LocalTime
 @Document
 @TypeAlias("user")
 data class User(
-    @Id
-    val id: String?,
-    val email: String,
-    val firstName: String? = null,
-    val lastName: String? = null,
-    val geolocation: Geolocation,
-    val subscribes: Boolean,
-    val notificationTimes: Set<LocalTime>
-) {
+        @Id
+        val id: String?,
+        val email: String,
+        val firstName: String? = null,
+        val lastName: String? = null,
+        val geolocation: Geolocation,
+        val subscribes: Boolean,
+        val notificationTimes: Set<LocalTime>) {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

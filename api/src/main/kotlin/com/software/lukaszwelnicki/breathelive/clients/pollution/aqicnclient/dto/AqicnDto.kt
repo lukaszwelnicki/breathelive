@@ -1,4 +1,4 @@
-package com.software.lukaszwelnicki.breathelive.aqicnclient.dto
+package com.software.lukaszwelnicki.breathelive.clients.pollution.aqicnclient.dto
 
 import com.software.lukaszwelnicki.breathelive.domain.AirPollutionLevel
 

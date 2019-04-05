@@ -1,8 +1,8 @@
-package com.software.lukaszwelnicki.breathelive.aqicnclient.mappers
+package com.software.lukaszwelnicki.breathelive.clients.pollution.aqicnclient.mappers
 
-import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnDto
-import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.toPollutionDto
+import com.software.lukaszwelnicki.breathelive.clients.pollution.aqicnclient.dto.AqicnDto
 import com.software.lukaszwelnicki.breathelive.domain.AirPollutionLevel
+import com.software.lukaszwelnicki.breathelive.extensions.toPollutionDto
 import org.junit.Test
 import org.junit.jupiter.api.Assertions
 
@@ -25,7 +25,7 @@ internal class AqicnToPollutionDtoKtTest {
     @Test
     fun shouldProperlyCreatePollutionDto() {
         Assertions.assertEquals(cityName, pollutionDto.city)
-        pollutionDto.aqis
+        pollutionDto.airQualityIndicies
                 .forEach { Assertions.assertEquals(AirPollutionLevel.GOOD, it.value) }
     }
 }

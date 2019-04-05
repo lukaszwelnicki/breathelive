@@ -1,7 +1,7 @@
 package com.software.lukaszwelnicki.breathelive.web.handlers
 
+import com.software.lukaszwelnicki.breathelive.clients.pollution.PollutionService
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
-import com.software.lukaszwelnicki.breathelive.web.PollutionService
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest

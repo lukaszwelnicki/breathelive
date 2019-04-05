@@ -1,4 +1,4 @@
-package com.software.lukaszwelnicki.breathelive.aqicnclient.dto
+package com.software.lukaszwelnicki.breathelive.clients.pollution.aqicnclient.dto
 
 import com.software.lukaszwelnicki.breathelive.domain.AirPollutionLevel
 import spock.lang.Specification
@@ -9,7 +9,7 @@ class AirQualityIndexTest extends Specification {
         expect:
             airQualityIndex.airPollutionLevel() == airPollutionLevel
         where:
-            airQualityIndex                   || airPollutionLevel
+            airQualityIndex                      || airPollutionLevel
             new AqicnDto.Data.Iaqi.Co(-1)     || AirPollutionLevel.NO_DATA
             new AqicnDto.Data.Iaqi.Co(0)      || AirPollutionLevel.NO_DATA
             new AqicnDto.Data.Iaqi.Co(0.1)    || AirPollutionLevel.GOOD

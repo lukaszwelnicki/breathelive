@@ -1,8 +1,8 @@
 package com.software.lukaszwelnicki.breathelive.extensions
 
-import com.software.lukaszwelnicki.breathelive.aqicnclient.dto.AqicnDto
+import com.software.lukaszwelnicki.breathelive.clients.pollution.PollutionDto
+import com.software.lukaszwelnicki.breathelive.clients.pollution.aqicnclient.dto.AqicnDto
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
-import com.software.lukaszwelnicki.breathelive.web.PollutionDto
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.LocalTime

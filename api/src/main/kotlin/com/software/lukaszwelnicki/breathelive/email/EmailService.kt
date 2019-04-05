@@ -1,7 +1,7 @@
 package com.software.lukaszwelnicki.breathelive.email
 
+import com.software.lukaszwelnicki.breathelive.clients.pollution.PollutionDto
 import com.software.lukaszwelnicki.breathelive.domain.User
-import com.software.lukaszwelnicki.breathelive.web.PollutionDto
 import mu.KotlinLogging
 import org.springframework.boot.autoconfigure.mail.MailProperties
 import org.springframework.core.io.ResourceLoader

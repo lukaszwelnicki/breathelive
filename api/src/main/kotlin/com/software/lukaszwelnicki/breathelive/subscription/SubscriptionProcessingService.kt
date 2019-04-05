@@ -1,12 +1,12 @@
-package com.software.lukaszwelnicki.breathelive.service
+package com.software.lukaszwelnicki.breathelive.subscription
 
 import com.software.lukaszwelnicki.breathelive.BreatheliveProperties
+import com.software.lukaszwelnicki.breathelive.clients.pollution.PollutionService
 import com.software.lukaszwelnicki.breathelive.domain.User
 import com.software.lukaszwelnicki.breathelive.email.EmailDto
 import com.software.lukaszwelnicki.breathelive.email.EmailService
 import com.software.lukaszwelnicki.breathelive.extensions.isWithinTimeWindowFromNow
 import com.software.lukaszwelnicki.breathelive.users.UserService
-import com.software.lukaszwelnicki.breathelive.web.PollutionService
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import java.time.Duration

@@ -1,6 +1,6 @@
 package com.software.lukaszwelnicki.breathelive
 
-import com.software.lukaszwelnicki.breathelive.service.SubscriptionProcessingService
+import com.software.lukaszwelnicki.breathelive.subscription.SubscriptionProcessingService
 import com.software.lukaszwelnicki.breathelive.users.UserRepository
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.event.ApplicationReadyEvent

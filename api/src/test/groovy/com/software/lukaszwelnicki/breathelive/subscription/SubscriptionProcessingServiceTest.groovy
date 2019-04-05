@@ -1,10 +1,11 @@
-package com.software.lukaszwelnicki.breathelive.service
+package com.software.lukaszwelnicki.breathelive.subscription
 
-import com.software.lukaszwelnicki.breathelive.aqicnclient.PollutionDto
+import com.software.lukaszwelnicki.breathelive.BreatheliveProperties
+import com.software.lukaszwelnicki.breathelive.clients.pollution.PollutionDto
+import com.software.lukaszwelnicki.breathelive.clients.pollution.aqicnclient.AqicnPollutionService
 import com.software.lukaszwelnicki.breathelive.domain.AirPollutionLevel
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
 import com.software.lukaszwelnicki.breathelive.domain.User
-import com.software.lukaszwelnicki.breathelive.dto.BreatheliveProperties
 import com.software.lukaszwelnicki.breathelive.email.EmailService
 import com.software.lukaszwelnicki.breathelive.users.UserService
 import reactor.core.publisher.Flux
@@ -21,7 +22,7 @@ class SubscriptionProcessingServiceTest extends Specification {
 
     def userService = Mock(UserService)
     def emailService = Mock(EmailService)
-    def airPollutionLevelService = Mock(AirPollutionLevelService)
+    def airPollutionLevelService = Mock(AqicnPollutionService)
     def breatheliveProperties = Mock(BreatheliveProperties)
     def subscriptionProcessingService = new SubscriptionProcessingService(userService, emailService, airPollutionLevelService, breatheliveProperties)
 

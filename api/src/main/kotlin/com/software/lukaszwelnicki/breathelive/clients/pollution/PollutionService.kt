@@ -1,4 +1,4 @@
-package com.software.lukaszwelnicki.breathelive.web
+package com.software.lukaszwelnicki.breathelive.clients.pollution
 
 import com.software.lukaszwelnicki.breathelive.domain.AirPollutionLevel
 import com.software.lukaszwelnicki.breathelive.domain.Geolocation
