@@ -25,6 +25,22 @@ class UserServiceImplTest extends TestcontainersConfig {
             new Geolocation(20.0, 20.0),
             true,
             new HashSet<LocalTime>())
+    def user3 = new User(
+            "3",
+            "email2@email.com",
+            null,
+            null,
+            new Geolocation(20.0, 20.0),
+            true,
+            new HashSet<LocalTime>())
+    def user4 = new User(
+            "4",
+            "email3@email.com",
+            null,
+            null,
+            new Geolocation(20.0, 20.0),
+            false,
+            new HashSet<LocalTime>())
 
 
     @Autowired
@@ -33,7 +49,25 @@ class UserServiceImplTest extends TestcontainersConfig {
     def "should store user correctly"() {
         when:
             userService.storeOrUpdateUser(user1).block()
-
+        then:
+            userService.findUserByEmail(user1.email).block() != null
     }
 
+    def "should override user with the same email"() {
+        when:
+            userService.storeOrUpdateUser(user1).block()
+            userService.storeOrUpdateUser(user2).block()
+        then:
+            userService.findAllSubscribingUsers().toIterable().size() == 1
+    }
+
+    def "should find all subscribing users"() {
+        when:
+            userService.storeOrUpdateUser(user1).block()
+            userService.storeOrUpdateUser(user2).block()
+            userService.storeOrUpdateUser(user3).block()
+            userService.storeOrUpdateUser(user4).block()
+        then:
+            userService.findAllSubscribingUsers().toIterable().size() == 2
+    }
 }
