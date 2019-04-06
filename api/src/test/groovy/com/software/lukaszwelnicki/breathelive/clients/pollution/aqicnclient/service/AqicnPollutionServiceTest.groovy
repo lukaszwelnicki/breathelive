@@ -13,6 +13,7 @@ import spock.lang.Unroll
 @Unroll
 class AqicnPollutionServiceTest extends Specification {
 
+    public static final String CITY = "Warsaw"
     AqicnNamespace namespace = new AqicnNamespace()
     AqicnUrlProvider urlProvider
     AqicnPollutionService aqicnPollutionService
@@ -28,7 +29,7 @@ class AqicnPollutionServiceTest extends Specification {
 
     def "should retreive data from AqicnService by city and not generate any error"() {
         given:
-            PollutionDto responseData = aqicnPollutionService.getPollutionByCity("Warsaw").block()
+            PollutionDto responseData = aqicnPollutionService.getPollutionByCity(CITY).block()
         expect:
             !responseData.airQualityIndicies.isEmpty()
     }
