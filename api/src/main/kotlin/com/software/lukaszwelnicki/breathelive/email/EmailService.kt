@@ -14,6 +14,7 @@ data class EmailDto(val user: User, val pollutionDto: PollutionDto)
 
 interface EmailService {
     fun sendPollutionEmail(emailData: EmailDto)
+    fun prepareTextMessage(user: User, pollutionData: PollutionDto): String
 }
 
 @Service
@@ -36,7 +37,7 @@ class EmailServiceImpl(private val javaMailSender: JavaMailSender,
         logger.info("Email sent to: ${emailData.user.email}")
     }
 
-    private fun prepareTextMessage(user: User, pollutionData: PollutionDto): String {
+    override fun prepareTextMessage(user: User, pollutionData: PollutionDto): String {
         return """
             |Greetings${user.firstName?.let { ", $it!" } ?: "!"}
             |
@@ -47,7 +48,7 @@ class EmailServiceImpl(private val javaMailSender: JavaMailSender,
             |
             |To get more information about air quality indices see the table below:
             |
-            """.trimMargin().replace("\n", "<br>")
+            """.trimMargin().replace(System.getProperty("line.separator"), "<br>")
     }
 
 }

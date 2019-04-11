@@ -11,7 +11,7 @@ class UserServiceImplTest extends TestcontainersConfig {
 
     def user1 = new User(
             "1",
-            "email@email.com",
+            "EMAIL@EMAIL.com",
             null,
             null,
             new Geolocation(20.0, 20.0),
@@ -19,7 +19,7 @@ class UserServiceImplTest extends TestcontainersConfig {
             new HashSet<LocalTime>())
     def user2 = new User(
             "2",
-            "email@email.com",
+            "EMAIL@EMAIL.com",
             null,
             null,
             new Geolocation(20.0, 20.0),
@@ -27,7 +27,7 @@ class UserServiceImplTest extends TestcontainersConfig {
             new HashSet<LocalTime>())
     def user3 = new User(
             "3",
-            "email2@email.com",
+            "email2@EMAIL.com",
             null,
             null,
             new Geolocation(20.0, 20.0),
@@ -35,7 +35,7 @@ class UserServiceImplTest extends TestcontainersConfig {
             new HashSet<LocalTime>())
     def user4 = new User(
             "4",
-            "email3@email.com",
+            "email3@EMAIL.com",
             null,
             null,
             new Geolocation(20.0, 20.0),
