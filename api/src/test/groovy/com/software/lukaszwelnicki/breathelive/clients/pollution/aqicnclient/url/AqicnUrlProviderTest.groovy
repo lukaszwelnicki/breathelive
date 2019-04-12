@@ -6,6 +6,8 @@ import spock.lang.Specification
 class AqicnUrlProviderTest extends Specification {
 
     public static final String CITY = "Warsaw"
+    public static final String CITY_WITH_SLASH = "Warsaw/"
+
     final AqicnNamespace namespace = new AqicnNamespace();
     AqicnUrlProvider urlProvider;
 
@@ -22,6 +24,7 @@ class AqicnUrlProviderTest extends Specification {
             String expectedURI = "https://api.waqi.info/feed/${-> CITY}/?token=6752cfb807b996e913f60c4a6cca1209766e45ab"
         expect:
             urlProvider.prepareUriForCityRequest(CITY) == new URI(expectedURI)
+            urlProvider.prepareUriForCityRequest(CITY_WITH_SLASH) == new URI(expectedURI)
     }
 
     def "should prepare correct URI for geo request"() {
