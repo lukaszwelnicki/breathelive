@@ -39,8 +39,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.codehaus.groovy:groovy-all:$groovyVersion")
     implementation("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")
-    implementation("io.arrow-kt:arrow-core:$arrowVersion")
-    implementation("io.arrow-kt:arrow-syntax:$arrowVersion")
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('io.projectreactor:reactor-test')
